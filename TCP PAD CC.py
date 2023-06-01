@@ -9,7 +9,38 @@ Description: Python script to launch a covert channel using minecraft keep alive
 
 from scapy.all import IP, TCP, Raw, send
 
-def send_keep_alive_packet(destination_ip, destination_port, sequence_number, padding):
+
+def string_to_binary(msg):
+    """
+    Converts a string message into binary format.
+
+    params:
+    ------
+    msg : String, message to be decoded to binary
+
+    returns:
+    -------
+    binary : String, binary representation of the message
+    """
+    
+    binary = ""
+    
+    for char in msg:
+        
+        binary += bin(ord(char))[2:].zfill(8)  # Convert character to binary and pad with zeros
+        
+    return binary
+
+
+
+
+
+def covert_channel(destination_ip, msg):
+    pass
+
+
+
+def send_packet(destination_ip, destination_port, sequence_number, padding):
     
     if len(padding) > 32:
         raise ValueError("Padding length exceeds 32 bytes.")
@@ -17,8 +48,6 @@ def send_keep_alive_packet(destination_ip, destination_port, sequence_number, pa
     send(packet)
 
 
-def test_to_binary(string):
-    
 
 covert_message = "test"
 
